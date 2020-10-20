@@ -51,7 +51,6 @@
     - fontconfig-devel
     - glibc
     - glibc-devel
-    - ipmiutil
     - ksh
     - libaio
     - libaio-devel
@@ -59,7 +58,6 @@
     - libibverbs
     - libnsl
     - libnsl2
-    - libnsl2-devel
     - librdmacm
     - libstdc++
     - libstdc++-devel
