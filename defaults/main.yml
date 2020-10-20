@@ -1,0 +1,36 @@
+---
+# defaults file for ust_oracle
+
+oracle_packages:
+- bc
+- binutils
+- elfutils-libelf
+- elfutils-libelf-devel
+- fontconfig-devel
+- glibc
+- glibc-devel
+- ipmiutil
+- ksh
+- libaio
+- libaio-devel
+- libgcc
+- libibverbs
+- libnsl
+- libnsl2
+- libnsl2-devel
+- librdmacm
+- libstdc++
+- libstdc++-devel
+- libvirt-devel
+- libvirt-libs
+- libX11
+- libXau
+- libxcb
+- libXi
+- libXrender
+- libXtst
+- make
+- net-tools
+- nfs-utils
+- smartmontools
+- sysstat

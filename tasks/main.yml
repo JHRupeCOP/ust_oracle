@@ -1,0 +1,119 @@
+---
+# tasks file for ust_oracle
+
+- name: Create Oracle
+  user:
+    name: oracle
+    state: present
+    comment: "Oracle Account"
+    uid: 5000
+    group: dba
+    groups: oinstall
+    shell: /bin/ksh
+    create_home: yes
+    home: /usr/Oracle
+    password: "{{ 'Oracle99Pass' | password_hash('sha512') }}"
+
+- name: Update Oracle password aging
+  command: chage -E -1 -m 0 -M 90 -W 7 Oracle
+
+- name: Create oracle files
+  file:
+    path: /etc/"{{ item }}"
+    state: touch
+    owner: oracle
+    group: dba
+    mode: 0666
+  loop:
+    - oraInst.loc
+    - listener.ora
+    - sqlnet.ora
+    - tnsnames.ora
+
+- name: Create oratab
+  file:
+    path: /etc/oratab
+    state: touch
+    owner: oracle
+    group: dba
+    mode: 0664
+
+- name: Install required packages
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - bc
+    - binutils
+    - elfutils-libelf
+    - elfutils-libelf-devel
+    - fontconfig-devel
+    - glibc
+    - glibc-devel
+    - ipmiutil
+    - ksh
+    - libaio
+    - libaio-devel
+    - libgcc
+    - libibverbs
+    - libnsl
+    - libnsl2
+    - libnsl2-devel
+    - librdmacm
+    - libstdc++
+    - libstdc++-devel
+    - libvirt-devel
+    - libvirt-libs
+    - libX11
+    - libXau
+    - libxcb
+    - libXi
+    - libXrender
+    - libXtst
+    - make
+    - net-tools
+    - nfs-utils
+    - smartmontools
+    - sysstat
+  when:
+    - ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "CentOS"
+    - ansible_facts['distribution_major_version'] == "8"
+
+
+- name: Install required packages
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - bc
+    - binutils
+    - compat-libcap1
+    - compat-libstdc++33
+    - elfutils-libelf
+    - elfutils-libelf-devel
+    - fontconfig-devel
+    - glibc
+    - glibc-devel
+    - glibc-headers
+    - glibc-utils
+    - ksh
+    - libaio
+    - libaio-devel
+    - libX11
+    - libXau
+    - libXi
+    - libXtst
+    - libXrender
+    - libXrender-devel
+    - libgcc
+    - libstdc++
+    - libstdc++-devel
+    - libxcb
+    - make
+    - smartmontools
+    - sysstat
+  when:
+    - ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "CentOS"
+    - ansible_facts['distribution_major_version'] == "7"
