@@ -15,7 +15,7 @@
     password: "{{ 'Oracle99Pass' | password_hash('sha512') }}"
 
 - name: Update Oracle password aging
-  command: chage -E -1 -m 0 -M 90 -W 7 Oracle
+  command: chage -E -1 -m 0 -M 90 -W 7 oracle
 
 - name: Create oracle files
   file:
