@@ -19,7 +19,7 @@
 
 - name: Create oracle files
   file:
-    path: /etc/"{{ item }}"
+    path: /etc/{{ item }}
     state: touch
     owner: oracle
     group: dba
