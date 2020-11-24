@@ -11,7 +11,7 @@
     groups: oinstall
     shell: /bin/ksh
     create_home: yes
-    home: /usr/Oracle
+    home: /usr/oracle
     password: "{{ 'Oracle99Pass' | password_hash('sha512') }}"
 
 - name: Update Oracle password aging
